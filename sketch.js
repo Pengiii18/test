@@ -22,7 +22,8 @@ function draw() {
   for (let x = 0; x < graphics.width; x += 20) {
     for (let y = 0; y < graphics.height; y += 20) {
       let col = capture.get(x, y); // 獲取 capture 對應位置的顏色
-      graphics.fill(col); // 設定填充顏色為該位置的顏色
+      let gray = (red(col) + green(col) + blue(col)) / 3; // 計算灰階值
+      graphics.fill(gray); // 設定填充顏色為灰階值
       graphics.noStroke();
       graphics.ellipse(x + 10, y + 10, 15, 15); // 繪製圓形，中心點位於單位內
     }
