@@ -22,10 +22,13 @@ function draw() {
   for (let x = 0; x < graphics.width; x += 20) {
     for (let y = 0; y < graphics.height; y += 20) {
       let col = capture.get(x, y); // 獲取 capture 對應位置的顏色
-      let gray = (red(col) + green(col) + blue(col)) / 3; // 計算灰階值
-      graphics.fill(gray); // 設定填充顏色為灰階值
+      let g = green(col); // 保留 G 值
+      graphics.fill(0, g, 100); // 設定方框顏色，R 為 0，B 為 100
       graphics.noStroke();
-      graphics.ellipse(x + 10, y + 10, 15, 15); // 繪製圓形，中心點位於單位內
+      graphics.rect(x + 1, y + 1, 18, 18); // 繪製方框，留出 1px 邊距
+
+      graphics.fill(0); // 設定圓的顏色為黑色
+      graphics.ellipse(x + 10, y + 10, 5, 5); // 在方框中間繪製圓
     }
   }
   graphics.pop(); // 恢復 graphics 畫布狀態
