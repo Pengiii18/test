@@ -1,5 +1,7 @@
 let capture;
 let graphics;
+const density = 'Ñ@#W$9876543210?!abc;:+=-,._ ';
+let txt = "一二三四五田雷電龕龘";
 
 function setup() {
   createCanvas(windowWidth, windowHeight); // 全視窗畫布
@@ -29,6 +31,14 @@ function draw() {
 
       graphics.fill(0); // 設定圓的顏色為黑色
       graphics.ellipse(x + 10, y + 10, 5, 5); // 在方框中間繪製圓
+
+      // 新增文字映射
+      let bk = brightness(col); // 計算亮度
+      let bkId = int(map(bk, 0, 255, txt.length - 1, 0)); // 映射亮度到文字索引
+      graphics.fill(255); // 設定文字顏色為白色
+      graphics.textAlign(CENTER, CENTER);
+      graphics.textSize(10);
+      graphics.text(txt[bkId], x + 10, y + 10); // 繪製文字
     }
   }
   graphics.pop(); // 恢復 graphics 畫布狀態
