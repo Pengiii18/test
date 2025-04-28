@@ -22,8 +22,12 @@ function draw() {
   let x = (width - capture.width) / 2; // 計算影像的水平居中位置
   let y = (height - capture.height) / 2; // 計算影像的垂直居中位置
   image(capture, x, y, capture.width, capture.height); // 繪製攝影機影像
-  image(graphics, x, y); // 在視訊上方繪製圖形
   pop(); // 恢復繪圖狀態
+
+  // 確保 graphics 正確顯示
+  let gx = (width - graphics.width) / 2;
+  let gy = (height - graphics.height) / 2;
+  image(graphics, gx, gy); // 在視訊上方繪製圖形
 }
 
 function windowResized() {
