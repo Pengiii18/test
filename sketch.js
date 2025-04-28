@@ -1,6 +1,5 @@
 let capture;
 let graphics;
-const density = 'Ñ@#W$9876543210?!abc;:+=-,._ ';
 
 function setup() {
   createCanvas(windowWidth, windowHeight); // 全視窗畫布
@@ -20,17 +19,16 @@ function draw() {
   graphics.translate(graphics.width, 0); // 調整畫布位置
   graphics.scale(-1, 1); // 翻轉 x 軸
   graphics.background(0); // 設定背景為黑色
-  graphics.textAlign(CENTER, CENTER); // 設定文字對齊方式
-  graphics.textSize(10); // 設定文字大小
-  graphics.fill(255); // 設定文字顏色為白色
-
   for (let x = 0; x < graphics.width; x += 20) {
     for (let y = 0; y < graphics.height; y += 20) {
       let col = capture.get(x, y); // 獲取 capture 對應位置的顏色
-      let gray = (red(col) + green(col) + blue(col)) / 3; // 計算灰階值
-      let charIndex = int(map(gray, 0, 255, density.length - 1, 0)); // 映射灰階值到字串索引
-      let char = density[charIndex]; // 取得對應字元
-      graphics.text(char, x + 10, y + 10); // 在單位畫面內顯示字元
+      let g = green(col); // 保留 G 值
+      graphics.fill(0, g, 100); // 設定方框顏色，R 為 0，B 為 100
+      graphics.noStroke();
+      graphics.rect(x + 1, y + 1, 18, 18); // 繪製方框，留出 1px 邊距
+
+      graphics.fill(0); // 設定圓的顏色為黑色
+      graphics.ellipse(x + 10, y + 10, 5, 5); // 在方框中間繪製圓
     }
   }
   graphics.pop(); // 恢復 graphics 畫布狀態
