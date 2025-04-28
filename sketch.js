@@ -9,9 +9,9 @@ function setup() {
   capture.hide(); // 隱藏原始的 HTML 視訊元素
 
   graphics = createGraphics(capture.width, capture.height); // 建立與視訊相同大小的圖形
-  graphics.fill(0, 0, 255, 150); // 設定填充顏色（藍色，透明度 150）
+  graphics.fill(255, 0, 0, 150); // 設定填充顏色（紅色，透明度 150）
   graphics.noStroke();
-  graphics.rect(0, 0, graphics.width, graphics.height / 4); // 繪製藍色矩形
+  graphics.ellipse(graphics.width / 2, graphics.height / 2, 100, 100); // 繪製紅色圓形
 }
 
 function draw() {
@@ -24,7 +24,7 @@ function draw() {
   image(capture, x, y, capture.width, capture.height); // 繪製攝影機影像
   pop(); // 恢復繪圖狀態
 
-  // 確保 graphics 正確顯示
+  // 確保 graphics 正確顯示在視訊上方
   let gx = (width - graphics.width) / 2;
   let gy = (height - graphics.height) / 2;
   image(graphics, gx, gy); // 在視訊上方繪製圖形
