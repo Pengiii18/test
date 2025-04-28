@@ -1,5 +1,5 @@
 let capture;
-let overlayGraphics;
+let graphics;
 
 function setup() {
   createCanvas(windowWidth, windowHeight); // 全視窗畫布
@@ -8,10 +8,10 @@ function setup() {
   capture.size(windowWidth * 0.8, windowHeight * 0.8); // 設定影像大小為視窗的 80%
   capture.hide(); // 隱藏原始的 HTML 視訊元素
 
-  overlayGraphics = createGraphics(capture.width, capture.height); // 建立與視訊相同大小的圖形
-  overlayGraphics.fill(0, 0, 255, 150); // 設定填充顏色（藍色，透明度 150）
-  overlayGraphics.noStroke();
-  overlayGraphics.rect(0, 0, overlayGraphics.width, overlayGraphics.height / 4); // 繪製藍色矩形
+  graphics = createGraphics(capture.width, capture.height); // 建立與視訊相同大小的圖形
+  graphics.fill(0, 0, 255, 150); // 設定填充顏色（藍色，透明度 150）
+  graphics.noStroke();
+  graphics.rect(0, 0, graphics.width, graphics.height / 4); // 繪製藍色矩形
 }
 
 function draw() {
@@ -22,12 +22,12 @@ function draw() {
   let x = (width - capture.width) / 2; // 計算影像的水平居中位置
   let y = (height - capture.height) / 2; // 計算影像的垂直居中位置
   image(capture, x, y, capture.width, capture.height); // 繪製攝影機影像
-  image(overlayGraphics, x, y); // 在視訊上方繪製圖形
+  image(graphics, x, y); // 在視訊上方繪製圖形
   pop(); // 恢復繪圖狀態
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight); // 當視窗大小改變時調整畫布
   capture.size(windowWidth * 0.8, windowHeight * 0.8); // 調整影像大小
-  overlayGraphics.resizeCanvas(capture.width, capture.height); // 調整圖形大小
+  graphics.resizeCanvas(capture.width, capture.height); // 調整圖形大小
 }
