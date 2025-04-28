@@ -15,6 +15,9 @@ function draw() {
   background('#dde5b6'); // 確保背景顏色一致
 
   // 更新 graphics 的內容
+  graphics.push(); // 儲存 graphics 畫布狀態
+  graphics.translate(graphics.width, 0); // 調整畫布位置
+  graphics.scale(-1, 1); // 翻轉 x 軸
   graphics.background(0); // 設定背景為黑色
   for (let x = 0; x < graphics.width; x += 20) {
     for (let y = 0; y < graphics.height; y += 20) {
@@ -24,10 +27,11 @@ function draw() {
       graphics.ellipse(x + 10, y + 10, 15, 15); // 繪製圓形，中心點位於單位內
     }
   }
+  graphics.pop(); // 恢復 graphics 畫布狀態
 
   push(); // 儲存當前繪圖狀態
   translate(width, 0); // 調整畫布位置
-  scale(1, -1); // 應用鏡像效果
+  scale(-1, 1); // 應用鏡像效果
   let x = (width - capture.width) / 2; // 計算影像的水平居中位置
   let y = (height - capture.height) / 2; // 計算影像的垂直居中位置
   image(capture, x, y, capture.width, capture.height); // 繪製攝影機影像
