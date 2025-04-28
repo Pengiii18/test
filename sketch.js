@@ -27,7 +27,7 @@ function draw() {
 
   push(); // 儲存當前繪圖狀態
   translate(width, 0); // 調整畫布位置
-  scale(-1, 1); // 應用鏡像效果
+  scale(1, -1); // 應用鏡像效果
   let x = (width - capture.width) / 2; // 計算影像的水平居中位置
   let y = (height - capture.height) / 2; // 計算影像的垂直居中位置
   image(capture, x, y, capture.width, capture.height); // 繪製攝影機影像
