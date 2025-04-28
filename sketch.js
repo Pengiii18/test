@@ -9,13 +9,22 @@ function setup() {
   capture.hide(); // 隱藏原始的 HTML 視訊元素
 
   graphics = createGraphics(capture.width, capture.height); // 建立與視訊相同大小的圖形
-  graphics.fill(255, 0, 0, 150); // 設定填充顏色（紅色，透明度 150）
-  graphics.noStroke();
-  graphics.ellipse(graphics.width / 2, graphics.height / 2, 100, 100); // 繪製紅色圓形
 }
 
 function draw() {
   background('#dde5b6'); // 確保背景顏色一致
+
+  // 更新 graphics 的內容
+  graphics.background(0); // 設定背景為黑色
+  for (let x = 0; x < graphics.width; x += 80) {
+    for (let y = 0; y < graphics.height; y += 80) {
+      let col = capture.get(x, y); // 獲取 capture 對應位置的顏色
+      graphics.fill(col); // 設定填充顏色為該位置的顏色
+      graphics.noStroke();
+      graphics.ellipse(x + 40, y + 40, 75, 75); // 繪製圓形，中心點位於單位內
+    }
+  }
+
   push(); // 儲存當前繪圖狀態
   scale(-1, -1); // 翻轉 x 和 y 軸
   translate(-width, -height); // 調整畫布位置
