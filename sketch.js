@@ -9,9 +9,9 @@ function setup() {
   capture.hide(); // 隱藏原始的 HTML 視訊元素
 
   overlayGraphics = createGraphics(capture.width, capture.height); // 建立與視訊相同大小的圖形
-  overlayGraphics.fill(255, 0, 0, 100); // 設定填充顏色（紅色，透明度 100）
+  overlayGraphics.fill(0, 0, 255, 150); // 設定填充顏色（藍色，透明度 150）
   overlayGraphics.noStroke();
-  overlayGraphics.ellipse(overlayGraphics.width / 2, overlayGraphics.height / 2, 100, 100); // 繪製紅色圓形
+  overlayGraphics.rect(0, 0, overlayGraphics.width, overlayGraphics.height / 4); // 繪製藍色矩形
 }
 
 function draw() {
